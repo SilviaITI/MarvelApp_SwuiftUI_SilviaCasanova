@@ -16,6 +16,14 @@
 		61A81DE02B0138BF00353AD1 /* MarvelApp_SwuiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81DDF2B0138BF00353AD1 /* MarvelApp_SwuiftUITests.swift */; };
 		61A81DEA2B0138BF00353AD1 /* MarvelApp_SwuiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81DE92B0138BF00353AD1 /* MarvelApp_SwuiftUIUITests.swift */; };
 		61A81DEC2B0138BF00353AD1 /* MarvelApp_SwuiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81DEB2B0138BF00353AD1 /* MarvelApp_SwuiftUIUITestsLaunchTests.swift */; };
+		61A81E062B013B1700353AD1 /* NetWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E052B013B1700353AD1 /* NetWorkModel.swift */; };
+		61A81E082B013E4E00353AD1 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E072B013E4E00353AD1 /* Character.swift */; };
+		61A81E0C2B01410500353AD1 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E0B2B01410500353AD1 /* Story.swift */; };
+		61A81E102B01443300353AD1 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E0F2B01443300353AD1 /* RootViewModel.swift */; };
+		61A81E122B01446800353AD1 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E112B01446800353AD1 /* StatusModel.swift */; };
+		61A81E142B01489700353AD1 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E132B01489700353AD1 /* CharactersViewModel.swift */; };
+		61A81E162B0148DB00353AD1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E152B0148DB00353AD1 /* SplashView.swift */; };
+		61A81E182B0148EA00353AD1 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81E172B0148EA00353AD1 /* CharactersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		61A81DE52B0138BF00353AD1 /* MarvelApp_SwuiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelApp_SwuiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A81DE92B0138BF00353AD1 /* MarvelApp_SwuiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp_SwuiftUIUITests.swift; sourceTree = "<group>"; };
 		61A81DEB2B0138BF00353AD1 /* MarvelApp_SwuiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp_SwuiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		61A81E052B013B1700353AD1 /* NetWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkModel.swift; sourceTree = "<group>"; };
+		61A81E072B013E4E00353AD1 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		61A81E0B2B01410500353AD1 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		61A81E0F2B01443300353AD1 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		61A81E112B01446800353AD1 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
+		61A81E132B01489700353AD1 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		61A81E152B0148DB00353AD1 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		61A81E172B0148EA00353AD1 /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +115,11 @@
 		61A81DC72B0138BD00353AD1 /* MarvelApp_SwuiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				61A81DFA2B013A3C00353AD1 /* Presentation */,
+				61A81DF92B013A3500353AD1 /* Domain */,
+				61A81DF82B013A2E00353AD1 /* Data */,
 				61A81DC82B0138BD00353AD1 /* MarvelApp_SwuiftUIApp.swift */,
 				61A81DCA2B0138BD00353AD1 /* Persistence.swift */,
-				61A81DCF2B0138BD00353AD1 /* ContentView.swift */,
 				61A81DD12B0138BF00353AD1 /* Assets.xcassets */,
 				61A81DD32B0138BF00353AD1 /* MarvelApp_SwuiftUI.entitlements */,
 				61A81DCC2B0138BD00353AD1 /* MarvelApp_SwuiftUI.xcdatamodeld */,
@@ -133,6 +151,116 @@
 				61A81DEB2B0138BF00353AD1 /* MarvelApp_SwuiftUIUITestsLaunchTests.swift */,
 			);
 			path = MarvelApp_SwuiftUIUITests;
+			sourceTree = "<group>";
+		};
+		61A81DF82B013A2E00353AD1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E042B013ABE00353AD1 /* KeyChain */,
+				61A81E032B013AB300353AD1 /* CoreData */,
+				61A81E022B013AA700353AD1 /* NetWork */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		61A81DF92B013A3500353AD1 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E002B013A8E00353AD1 /* Extensions */,
+				61A81DFF2B013A8100353AD1 /* UseCase */,
+				61A81DFE2B013A7900353AD1 /* Models */,
+				61A81DFD2B013A6F00353AD1 /* Protocols */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		61A81DFA2B013A3C00353AD1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E012B013A9700353AD1 /* Components */,
+				61A81DFC2B013A4E00353AD1 /* ViewsModel */,
+				61A81DFB2B013A4600353AD1 /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		61A81DFB2B013A4600353AD1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61A81DCF2B0138BD00353AD1 /* ContentView.swift */,
+				61A81E152B0148DB00353AD1 /* SplashView.swift */,
+				61A81E172B0148EA00353AD1 /* CharactersView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		61A81DFC2B013A4E00353AD1 /* ViewsModel */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E0F2B01443300353AD1 /* RootViewModel.swift */,
+				61A81E132B01489700353AD1 /* CharactersViewModel.swift */,
+			);
+			path = ViewsModel;
+			sourceTree = "<group>";
+		};
+		61A81DFD2B013A6F00353AD1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		61A81DFE2B013A7900353AD1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E072B013E4E00353AD1 /* Character.swift */,
+				61A81E0B2B01410500353AD1 /* Story.swift */,
+				61A81E112B01446800353AD1 /* StatusModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		61A81DFF2B013A8100353AD1 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		61A81E002B013A8E00353AD1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		61A81E012B013A9700353AD1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		61A81E022B013AA700353AD1 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				61A81E052B013B1700353AD1 /* NetWorkModel.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		61A81E032B013AB300353AD1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		61A81E042B013ABE00353AD1 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = KeyChain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +393,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A81E0C2B01410500353AD1 /* Story.swift in Sources */,
+				61A81E162B0148DB00353AD1 /* SplashView.swift in Sources */,
+				61A81E182B0148EA00353AD1 /* CharactersView.swift in Sources */,
 				61A81DC92B0138BD00353AD1 /* MarvelApp_SwuiftUIApp.swift in Sources */,
+				61A81E062B013B1700353AD1 /* NetWorkModel.swift in Sources */,
 				61A81DCB2B0138BD00353AD1 /* Persistence.swift in Sources */,
+				61A81E142B01489700353AD1 /* CharactersViewModel.swift in Sources */,
+				61A81E082B013E4E00353AD1 /* Character.swift in Sources */,
 				61A81DD02B0138BD00353AD1 /* ContentView.swift in Sources */,
+				61A81E122B01446800353AD1 /* StatusModel.swift in Sources */,
+				61A81E102B01443300353AD1 /* RootViewModel.swift in Sources */,
 				61A81DCE2B0138BD00353AD1 /* MarvelApp_SwuiftUI.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

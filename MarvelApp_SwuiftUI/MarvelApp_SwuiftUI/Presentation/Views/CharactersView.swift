@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct CharactersView: View {
+    
+    @StateObject var viewModel = CharactersViewModel()
+    
     var body: some View {
         NavigationStack {
             List {
-                
+                ForEach(viewModel.characters) { data in
+                    CharacterCellView(character: data)
+                    
+                }
             }
         }
     }
 }
 
 #Preview {
-    CharactersView()
+   
+    CharactersView(viewModel: CharactersViewModel())
+    
 }

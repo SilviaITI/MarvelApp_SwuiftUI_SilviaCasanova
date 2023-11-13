@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class CharactersViewModel {
+final class CharactersViewModel: ObservableObject {
     
     
     @Published var status = Status.none
@@ -30,12 +30,16 @@ final class CharactersViewModel {
             .dataTaskPublisher(for: NetWorkModel().getApiCharacters())
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
+                    
                       response.statusCode == 200 else {
+                    print("error bad server")
                     throw URLError(.badServerResponse)
+                    
                 }
+                print("received response\($0.data.base64EncodedString())")
                 return $0.data
             }
-            .decode(type: [Character].self, decoder: JSONDecoder())
+            .decode(type: Data.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -44,8 +48,9 @@ final class CharactersViewModel {
                 case .finished:
                     self.status = .loaded
                 }
-            } receiveValue: { data  in
-                self.characters = data
+            } receiveValue: { response  in
+                self.characters = response.data.results
+                print("\(self.characters)")
             }
             .store(in: &subscribers)
     }
@@ -56,10 +61,10 @@ final class CharactersViewModel {
     }
     
     func getCharactersDesign() -> [Character] {
-        let character1 = Character(id: 123, name: "Capitan America")
-        let character2 = Character(id: 124, name: "Spiderman")
-        let character3 = Character(id: 125, name: "Capitana Marvel")
-        let character4 = Character(id: 126, name: "Black Panter")
+        let character1 = Character(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character2 = Character(id: 124, name: "Spiderman", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character3 = Character(id: 125, name: "Capitana Marvel", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character4 = Character(id: 126, name: "Black Panter", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
         return [character1, character2, character3, character4]
     }
 }

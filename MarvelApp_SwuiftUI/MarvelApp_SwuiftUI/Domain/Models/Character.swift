@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Data: Codable {
-    let data: Results
+struct Data<T: Codable>: Codable {
+    let data: Results<T>
 }
-struct Results: Codable {
-    let results: [Character]
+struct Results<T: Codable>: Codable {
+    let results: [T]
 }
 struct Character: Codable, Identifiable {
     
@@ -21,7 +21,7 @@ struct Character: Codable, Identifiable {
     let description: String?
     var completeImage: String {
         "\(thumbnail?.path ?? "").\(thumbnail?.pathExtension ?? "")".replacingOccurrences(of: "http", with: "https")
-    
+       
     }
    
 }

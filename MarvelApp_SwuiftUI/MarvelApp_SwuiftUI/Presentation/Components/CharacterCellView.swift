@@ -23,6 +23,7 @@ struct CharacterCellView: View {
             })
                 .frame(width: 300, height: 200)
             Text(character.name ?? "-")
+                .font(.title)
                 
         }
         .padding()

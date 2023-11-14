@@ -13,16 +13,24 @@ struct CharactersView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.characters) { data in
-                    CharacterCellView(character: data)
+            LoadingView(isLoading: $viewModel.isLoading) {
+                List {
+                    ForEach(viewModel.characters) { data in
+                        NavigationLink {
+                            DetailView(viewModel: DetailViewModel(character: data))
+                        } label : {
+                            CharacterCellView(character: data)
+                            
+                        }
+                    }
                     
                 }
+                .navigationTitle("Héroes")
             }
+            
         }
     }
 }
-
 #Preview {
    
     CharactersView(viewModel: CharactersViewModel())

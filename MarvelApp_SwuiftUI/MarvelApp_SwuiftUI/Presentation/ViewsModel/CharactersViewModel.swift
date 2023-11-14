@@ -12,6 +12,7 @@ final class CharactersViewModel: ObservableObject {
     
     
     @Published var status = Status.none
+    @Published var isLoading = false
     @Published var characters:[Character] = []
     
     var subscribers = Set<AnyCancellable>()
@@ -39,7 +40,7 @@ final class CharactersViewModel: ObservableObject {
                 print("received response\($0.data.base64EncodedString())")
                 return $0.data
             }
-            .decode(type: Data.self, decoder: JSONDecoder())
+            .decode(type: Data<Character>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -48,7 +49,7 @@ final class CharactersViewModel: ObservableObject {
                 case .finished:
                     self.status = .loaded
                 }
-            } receiveValue: { response  in
+            } receiveValue: { (response: Data<Character>)  in
                 self.characters = response.data.results
                 print("\(self.characters)")
             }

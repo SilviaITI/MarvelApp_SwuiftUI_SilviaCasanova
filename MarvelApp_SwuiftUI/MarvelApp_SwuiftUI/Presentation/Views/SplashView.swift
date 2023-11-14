@@ -2,16 +2,14 @@
 //  SplashView.swift
 //  MarvelApp_SwuiftUI
 //
-//  Created by Silvia Casanova Martinez on 12/11/23.
+//  Created by Silvia Casanova Martinez on 14/11/23.
 //
 
 import SwiftUI
 
 struct SplashView: View {
-    @StateObject var viewModel = SplashViewModel()
     var body: some View {
-        ZStack {
-        }
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 

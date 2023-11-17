@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct SplashView: View {
+    @State private var navigateToNextView = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      
+
+       ZStack {
+            Image(.marvelUniverse4)
+                .scaledToFill()
+                .ignoresSafeArea()
+                .opacity(0.7)
+           Image(.escudoCapitanAmérica)
+               .rotationEffect(.degrees(360.0))
+        }
     }
 }
 

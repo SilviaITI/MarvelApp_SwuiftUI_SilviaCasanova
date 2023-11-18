@@ -39,6 +39,8 @@ struct NetWorkModel {
     
     //https://gateway.marvel.com/v1/public/characters?ts=1&apikey=c4f3f162d0e23b27093e8929b8af94b6&hash=ec2facffc6252f40de0ae675c55244fb
     
+
+    
     func getApiCharacters() -> URLRequest {
         let url = "\(Urls.urlBase)\(Urls.endPointCharacters)\(Urls.credentials)"
         var request: URLRequest = URLRequest(url: URL(string: url)!)

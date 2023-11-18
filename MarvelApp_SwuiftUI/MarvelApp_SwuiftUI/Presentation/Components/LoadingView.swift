@@ -16,9 +16,9 @@ struct LoadingView<Content: View>: View {
             content()
             Group{
                 
-                Color.red
+                Color.white
                     .ignoresSafeArea()
-                ProgressView()
+                CustomLoaderView(isRotating: $isLoading)
             }
             .opacity(isLoading ? 1 : 0)
         }

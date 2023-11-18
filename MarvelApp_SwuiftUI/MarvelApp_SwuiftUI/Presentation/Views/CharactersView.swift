@@ -26,8 +26,8 @@ struct CharactersView: View {
                     
                 }
                 .navigationTitle("Héroes")
+                .background(.gray)
             }
-            
         }
     }
 }

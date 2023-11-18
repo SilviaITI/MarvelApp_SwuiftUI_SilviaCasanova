@@ -15,7 +15,9 @@ struct CharacterCellView: View {
                image
                     .resizable()
                     .opacity(0.8)
+                    .border(Color.black, width: 2.5)
                     .cornerRadius(20)
+                    .shadow(radius: 10, x:2, y: 10)
             }, placeholder: {
                 Image(systemName: "photo")
                     .resizable()
@@ -23,10 +25,11 @@ struct CharacterCellView: View {
             })
                 .frame(width: 300, height: 200)
             Text(character.name ?? "-")
-                .font(.title)
+                .font(.title3)
                 
         }
         .padding()
+       
         
     }
 }

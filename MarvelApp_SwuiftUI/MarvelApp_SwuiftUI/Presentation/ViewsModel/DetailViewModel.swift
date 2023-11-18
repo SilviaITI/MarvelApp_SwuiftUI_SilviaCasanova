@@ -10,8 +10,17 @@ import Combine
 
 final class DetailViewModel: ObservableObject {
  
+    
+    @Published var status = Status.none {
+        didSet{
+            handleViewStates()
+        }
+    }
+    @Published var isLoading = false
+    @Published var showError = false
     @Published var series:[Serie] = []
     @Published var character: Character
+    @Published var errorText = ""
     
     var subscribers = Set<AnyCancellable>()
     
@@ -26,6 +35,7 @@ final class DetailViewModel: ObservableObject {
     
     func getSeries(id: Int?) {
         guard let id else { return }
+        self.status = .loading
         URLSession.shared.dataTaskPublisher(for: NetWorkModel().getSeries(with: id))
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
@@ -42,21 +52,34 @@ final class DetailViewModel: ObservableObject {
             .sink { completion in
                 switch completion {
                 case .failure:
-                    print("Error al cargar los datos")
+                    self.status = .error(error: "Error al recibir los datos")
                 case .finished:
-                   print("Success ok")
+                    self.status = .loaded
                 }
-            } receiveValue: { (response: Data<Serie>) in
-                self.series = response.data.results
-                print("\(self.series)")
+            } receiveValue: { [weak self] (response: Data<Serie>) in
+                self?.series = response.data.results
+                
             }
             .store(in: &subscribers)
             }
-    
+    func handleViewStates() {
+        switch status {
+        case .loaded:
+            isLoading = false
+        case .loading:
+            isLoading = true
+        case .error(let error):
+            isLoading = false
+            showError = true
+            errorText = error
+        default: ()
+            
+        }
+    }
     func getSeriesTesting() {
-        //self.status = .loading
+        self.status = .loading
         self.series = getSeriesDesign()
-        //self.status = .loaded
+        self.status = .loaded
     }
     func getSeriesDesign() -> [Serie] {
         let serie1 = Serie(id: 123, title: "Los Cuatro Fantásticos", description: "Esta es una descripción de prueba.", thumbnail: SerieImage.init(path: "camera", pathExtension: ".fill"))

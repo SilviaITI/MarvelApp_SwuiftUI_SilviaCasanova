@@ -11,9 +11,15 @@ import Combine
 final class CharactersViewModel: ObservableObject {
     
     
-    @Published var status = Status.none
+    @Published var status = Status.none {
+        didSet{
+            handleViewStates()
+        }
+    }
     @Published var isLoading = false
+    @Published var showError = false
     @Published var characters:[Character] = []
+    @Published var errorText = ""
     
     var subscribers = Set<AnyCancellable>()
     
@@ -42,19 +48,34 @@ final class CharactersViewModel: ObservableObject {
             }
             .decode(type: Data<Character>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self]  completion in
                 switch completion {
                 case .failure:
-                    self.status = .error(error: "Error buscando personajes")
+                    self?.status = .error(error: "Error buscando personajes")
                 case .finished:
-                    self.status = .loaded
+                    self?.status = .loaded
                 }
-            } receiveValue: { (response: Data<Character>)  in
-                self.characters = response.data.results
-                print("\(self.characters)")
+            } receiveValue: { [weak self] (response: Data<Character>)  in
+                self?.characters = response.data.results
+                
             }
             .store(in: &subscribers)
     }
+    func handleViewStates() {
+        switch status {
+        case .loaded:
+            isLoading = false
+        case .loading:
+            isLoading = true
+        case .error(let error):
+            isLoading = false
+            showError = true
+            errorText = error
+        default: ()
+            
+        }
+    }
+    
     func getCharactersTesting() {
         self.status = .loading
         self.characters = getCharactersDesign()

@@ -6,23 +6,21 @@
 //
 
 import SwiftUI
-enum RootState {
-    case splash
-    case home
-}
-
 struct RootView: View {
-    @StateObject var viewModel = SplashViewModel()
-    @State var viewState: RootState = .splash
+    @StateObject var rootViewModel = RootViewModel()
      
     var body: some View {
-        switch viewState {
-        case .splash:
-           EmptyView()
-        case .home:
-            CharactersView()
-                .transition(.slide)
+       ZStack {
+            switch rootViewModel.status{
+            case .splash:
+                SplashView(isRotating: .constant(true))
+            case .home:
+                CharactersView()
+                    .transition(.move(edge: .trailing))
+            }
         }
+        .onAppear(perform: rootViewModel.changeState)
+        .animation(.default, value: rootViewModel.status)
     }
     
 }

@@ -8,21 +8,29 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State private var navigateToNextView = false
+    @Binding  var isRotating: Bool
     var body: some View {
-      
-
-       ZStack {
+    
+        ZStack {
             Image(.marvelUniverse4)
+                .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-                .opacity(0.7)
-           Image(.escudoCapitanAmérica)
-               .rotationEffect(.degrees(360.0))
+                .opacity(0.6)
+            VStack{
+                Text("¡¡Bienvenido a Marvel!!")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.black)
+                CustomLoaderView(isRotating: .constant(true))
+                }
+                
+            }
         }
     }
-}
+
+
 
 #Preview {
-    SplashView()
+    SplashView(isRotating: .constant(true))
 }

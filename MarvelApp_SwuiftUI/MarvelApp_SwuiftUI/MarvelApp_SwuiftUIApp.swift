@@ -13,7 +13,7 @@ struct MarvelApp_SwuiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CharactersView()
+            RootView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

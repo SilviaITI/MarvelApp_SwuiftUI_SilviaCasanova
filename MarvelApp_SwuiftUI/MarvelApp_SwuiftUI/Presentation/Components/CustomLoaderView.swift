@@ -12,26 +12,23 @@ struct CustomLoaderView: View {
     @Binding var loading: Bool
     @State var animate =  false
     
+    
     var body: some View {
         
         Image(.escudoCapitanAmérica)
-            .rotationEffect(animate ? Angle(degrees: 360) : Angle(degrees: 0))
-            .animation(animate ? Animation.linear(duration: 1).repeatForever(autoreverses: false) : Animation.default)
+            .rotationEffect(.degrees(animate ? 360 : 0))
+            .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: animate)
+        
+            .opacity(loading ? 1 : 0)
             .onAppear {
-                self.animate = loading
+                animate = loading
             }
             .onChange(of: loading) { newValue in
-                self.animate = newValue
+                animate = newValue
             }
     }
     
 }
-
-
-
-
-    
-
 
 
 #Preview {

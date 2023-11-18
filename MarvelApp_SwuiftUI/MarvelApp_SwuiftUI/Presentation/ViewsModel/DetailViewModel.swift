@@ -19,12 +19,12 @@ final class DetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var showError = false
     @Published var series:[Serie] = []
-    @Published var character: Character
+    @Published var character: Heroes
     @Published var errorText = ""
     
     var subscribers = Set<AnyCancellable>()
     
-    init(testing: Bool = false, character: Character) {
+    init(testing: Bool = false, character: Heroes) {
         self.character = character
         if (testing) {
             getSeriesTesting()
@@ -40,7 +40,7 @@ final class DetailViewModel: ObservableObject {
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
                       response.statusCode == 200 else {
-                    print("Error bad server")
+                    self.status = .error(error: "Error al construir url")
                     throw URLError(.badServerResponse)
                 }
                 print("received response \($0.data.base64EncodedString())")
@@ -52,7 +52,7 @@ final class DetailViewModel: ObservableObject {
             .sink { completion in
                 switch completion {
                 case .failure:
-                    self.status = .error(error: "Error al recibir los datos")
+                    self.status = .error(error: "Error al recibir los datos del héroe")
                 case .finished:
                     self.status = .loaded
                 }

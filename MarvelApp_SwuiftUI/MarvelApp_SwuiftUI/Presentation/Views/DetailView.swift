@@ -24,11 +24,13 @@ struct DetailView: View {
                         .resizable()
                         .opacity(0.2)
                 })
+                .id(0)
                 .frame(minWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
                 VStack{
                     Text(viewModel.character.description ?? "")
                         .padding()
                         .background(Color.white.opacity(0.3))
+                        .id(1)
                         
                  
                     ScrollView {
@@ -44,9 +46,11 @@ struct DetailView: View {
                                                 .resizable()
                                                 
                                         })
+                                        .id(1)
                                         .frame(width: 200, height: 200)
                                         Text(data.title ?? "-")
                                             .bold()
+                                            .id(2)
                                         
                                         
                                         //                                Text(data.description ?? "Esto es una descripción")
@@ -66,5 +70,5 @@ struct DetailView: View {
                             }
 }
 #Preview {
-    DetailView(viewModel: DetailViewModel(character: Character(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "Esta es una descripción generica del personaje que se muestra en el detalle")))
+    DetailView(viewModel: DetailViewModel(character: Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "Esta es una descripción generica del personaje que se muestra en el detalle")))
 }

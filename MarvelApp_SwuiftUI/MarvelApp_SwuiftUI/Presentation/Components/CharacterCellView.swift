@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CharacterCellView: View {
-    let character: Character
+    let character: Heroes
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: character.completeImage), content: { image in
@@ -35,5 +35,5 @@ struct CharacterCellView: View {
 }
 
 #Preview {
-    CharacterCellView(character: Character(id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción"))
+    CharacterCellView(character: Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción"))
 }

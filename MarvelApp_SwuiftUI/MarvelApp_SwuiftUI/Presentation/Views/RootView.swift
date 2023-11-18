@@ -22,6 +22,7 @@ struct RootView: View {
             }
             .onAppear(perform: rootViewModel.changeState)
         }
+
         }
     }
     

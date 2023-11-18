@@ -18,7 +18,7 @@ final class CharactersViewModel: ObservableObject {
     }
     @Published var isLoading = false
     @Published var showError = false
-    @Published var characters:[Character] = []
+    @Published var characters:[Heroes] = []
     @Published var errorText = ""
     
     var subscribers = Set<AnyCancellable>()
@@ -39,14 +39,14 @@ final class CharactersViewModel: ObservableObject {
                 guard let response = $0.response as? HTTPURLResponse,
                     
                       response.statusCode == 200 else {
-                    print("error bad server")
+                    self.status = .error(error: "Error al construir url")
                     throw URLError(.badServerResponse)
                     
                 }
                 print("received response\($0.data.base64EncodedString())")
                 return $0.data
             }
-            .decode(type: Data<Character>.self, decoder: JSONDecoder())
+            .decode(type: Data<Heroes>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { [weak self]  completion in
                 switch completion {
@@ -55,7 +55,7 @@ final class CharactersViewModel: ObservableObject {
                 case .finished:
                     self?.status = .loaded
                 }
-            } receiveValue: { [weak self] (response: Data<Character>)  in
+            } receiveValue: { [weak self] (response: Data<Heroes>)  in
                 self?.characters = response.data.results
                 
             }
@@ -82,11 +82,11 @@ final class CharactersViewModel: ObservableObject {
         self.status = .loaded
     }
     
-    func getCharactersDesign() -> [Character] {
-        let character1 = Character(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
-        let character2 = Character(id: 124, name: "Spiderman", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
-        let character3 = Character(id: 125, name: "Capitana Marvel", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
-        let character4 = Character(id: 126, name: "Black Panter", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+    func getCharactersDesign() -> [Heroes] {
+        let character1 = Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character2 = Heroes(id: 124, name: "Spiderman", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character3 = Heroes(id: 125, name: "Capitana Marvel", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
+        let character4 = Heroes(id: 126, name: "Black Panter", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
         return [character1, character2, character3, character4]
     }
 }

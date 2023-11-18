@@ -16,13 +16,15 @@ struct SplashView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
                 .opacity(0.6)
+                .id(0)
             VStack{
                 Text("¡¡Bienvenido a Marvel!!")
                     .font(.title)
                     .bold()
                     .foregroundStyle(.black)
-                CustomLoaderView(loading: .constant(true))
-                 
+                    .id(1)
+                Image(.escudoCapitanAmérica)
+                    .id(2)
                 }
                 
             }

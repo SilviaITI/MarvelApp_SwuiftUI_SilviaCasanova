@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ErrorView: View {
+    @State var error: String = ""
     var body: some View {
-        Text("Ups parece que algo ha fallado")
-        Image(systemName: "exclamationmark.triangle")
-            .resizable()
-            .frame(width: 150, height: 150)
+        VStack{
+            Text(error)
+                .id(0)
+            Image(systemName: "exclamationmark.triangle")
+                .resizable()
+                .frame(width: 150, height: 150)
+                .id(1)
+        }
     }
 }
 

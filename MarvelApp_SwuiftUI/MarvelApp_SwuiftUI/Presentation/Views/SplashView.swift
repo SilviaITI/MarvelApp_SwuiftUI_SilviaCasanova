@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SplashView: View {
-    @Binding  var isRotating: Bool
     var body: some View {
     
         ZStack {
@@ -22,15 +21,18 @@ struct SplashView: View {
                     .font(.title)
                     .bold()
                     .foregroundStyle(.black)
-                CustomLoaderView(isRotating: .constant(true))
+                CustomLoaderView(loading: .constant(true))
+                 
                 }
                 
             }
+        
         }
+       
     }
 
 
 
 #Preview {
-    SplashView(isRotating: .constant(true))
+    SplashView()
 }

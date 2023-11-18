@@ -12,7 +12,6 @@ struct CharactersView: View {
     @StateObject var viewModel = CharactersViewModel()
     
     var body: some View {
-        NavigationStack {
             LoadingView(isLoading: $viewModel.isLoading) {
                 List {
                     ForEach(viewModel.characters) { data in
@@ -28,7 +27,6 @@ struct CharactersView: View {
                 .navigationTitle("Héroes")
                 .background(.gray)
             }
-        }
     }
 }
 #Preview {

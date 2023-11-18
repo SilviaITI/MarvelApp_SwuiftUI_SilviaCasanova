@@ -10,20 +10,22 @@ struct RootView: View {
     @StateObject var rootViewModel = RootViewModel()
      
     var body: some View {
-       ZStack {
-            switch rootViewModel.status{
-            case .splash:
-                SplashView(isRotating: .constant(true))
-            case .home:
-                CharactersView()
-                    .transition(.move(edge: .trailing))
+        NavigationStack {
+            ZStack  {
+                switch rootViewModel.status{
+                case .splash:
+                    SplashView()
+                case .home:
+                    CharactersView()
+                    
+                }
             }
+            .onAppear(perform: rootViewModel.changeState)
         }
-        .onAppear(perform: rootViewModel.changeState)
-        .animation(.default, value: rootViewModel.status)
+        }
     }
     
-}
+
 
 #Preview {
     RootView()

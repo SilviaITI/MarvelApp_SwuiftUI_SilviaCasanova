@@ -14,13 +14,15 @@ struct LoadingView<Content: View>: View {
     var body: some View {
         ZStack{
             content()
-            Group{
-                
-                Color.white
-                    .ignoresSafeArea()
-                CustomLoaderView(isRotating: $isLoading)
+            if isLoading {
+                Group{
+                    Color.white
+                        .ignoresSafeArea()
+                    
+                    CustomLoaderView(loading: $isLoading)
+                    
+                }
             }
-            .opacity(isLoading ? 1 : 0)
         }
     }
 }

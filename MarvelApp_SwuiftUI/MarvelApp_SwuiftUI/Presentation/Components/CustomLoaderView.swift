@@ -8,20 +8,32 @@
 import SwiftUI
 
 struct CustomLoaderView: View {
-
-    @Binding  var isRotating: Bool
     
-        var body: some View {
-            Image(.escudoCapitanAmérica)
-                .rotationEffect(.degrees(isRotating ? 360 : 0))
-                .onAppear {
-                    withAnimation(.linear(duration: 1)
-                        .speed(0.5).repeatForever(autoreverses: false)) {
-                            isRotating.toggle()
-                        }
-                }}
+    @Binding var loading: Bool
+    @State var animate =  false
+    
+    var body: some View {
+        
+        Image(.escudoCapitanAmérica)
+            .rotationEffect(animate ? Angle(degrees: 360) : Angle(degrees: 0))
+            .animation(animate ? Animation.linear(duration: 1).repeatForever(autoreverses: false) : Animation.default)
+            .onAppear {
+                self.animate = loading
+            }
+            .onChange(of: loading) { newValue in
+                self.animate = newValue
+            }
     }
+    
+}
+
+
+
+
+    
+
+
 
 #Preview {
-    CustomLoaderView(isRotating: .constant(true))
+    CustomLoaderView(loading: .constant(true))
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		613930FA2B092A04008F3108 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613930F92B092A04008F3108 /* Data.swift */; };
+		613930FA2B092A04008F3108 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613930F92B092A04008F3108 /* DataResponse.swift */; };
 		613930FC2B0939E6008F3108 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613930FB2B0939E6008F3108 /* Results.swift */; };
 		613931042B093D87008F3108 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613931032B093D87008F3108 /* TestModels.swift */; };
 		6139310D2B095178008F3108 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 6139310C2B095178008F3108 /* ViewInspector */; };
@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		613930F92B092A04008F3108 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		613930F92B092A04008F3108 /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		613930FB2B0939E6008F3108 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		613931032B093D87008F3108 /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
 		6139310E2B09518D008F3108 /* TestViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViews.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 				61A81E072B013E4E00353AD1 /* Heroes.swift */,
 				61A81E112B01446800353AD1 /* StatusModel.swift */,
 				61A1DB072B02ADCB00C1F98A /* Series.swift */,
-				613930F92B092A04008F3108 /* Data.swift */,
+				613930F92B092A04008F3108 /* DataResponse.swift */,
 				613930FB2B0939E6008F3108 /* Results.swift */,
 			);
 			path = Models;
@@ -452,7 +452,7 @@
 				613930FC2B0939E6008F3108 /* Results.swift in Sources */,
 				61A81E122B01446800353AD1 /* StatusModel.swift in Sources */,
 				61A1DB082B02ADCB00C1F98A /* Series.swift in Sources */,
-				613930FA2B092A04008F3108 /* Data.swift in Sources */,
+				613930FA2B092A04008F3108 /* DataResponse.swift in Sources */,
 				61A81E102B01443300353AD1 /* RootViewModel.swift in Sources */,
 				61A81DCE2B0138BD00353AD1 /* MarvelApp_SwuiftUI.xcdatamodeld in Sources */,
 			);

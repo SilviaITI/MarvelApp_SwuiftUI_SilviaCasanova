@@ -6,6 +6,6 @@
 //
 
 import Foundation
-public struct Data<T: Codable>: Codable {
+public struct DataResponse<T: Codable>: Codable {
     let data: Results<T>
 }

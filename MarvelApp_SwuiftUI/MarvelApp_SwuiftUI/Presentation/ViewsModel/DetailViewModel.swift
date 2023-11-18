@@ -47,7 +47,7 @@ final class DetailViewModel: ObservableObject {
                 return $0.data
                 
             }
-            .decode(type: Data<Serie>.self, decoder: JSONDecoder())
+            .decode(type: DataResponse<Serie>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -56,7 +56,7 @@ final class DetailViewModel: ObservableObject {
                 case .finished:
                     self.status = .loaded
                 }
-            } receiveValue: { [weak self] (response: Data<Serie>) in
+            } receiveValue: { [weak self] (response: DataResponse<Serie>) in
                 self?.series = response.data.results
                 
             }

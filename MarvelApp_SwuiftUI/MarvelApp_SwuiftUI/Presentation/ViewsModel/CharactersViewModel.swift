@@ -46,7 +46,7 @@ final class CharactersViewModel: ObservableObject {
                 print("received response\($0.data.base64EncodedString())")
                 return $0.data
             }
-            .decode(type: Data<Heroes>.self, decoder: JSONDecoder())
+            .decode(type: DataResponse<Heroes>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { [weak self]  completion in
                 switch completion {
@@ -55,7 +55,7 @@ final class CharactersViewModel: ObservableObject {
                 case .finished:
                     self?.status = .loaded
                 }
-            } receiveValue: { [weak self] (response: Data<Heroes>)  in
+            } receiveValue: { [weak self] (response: DataResponse<Heroes>)  in
                 self?.characters = response.data.results
                 
             }

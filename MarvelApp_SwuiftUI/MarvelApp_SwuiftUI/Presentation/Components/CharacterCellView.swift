@@ -62,7 +62,6 @@ struct CharacterCellView: View {
                     .opacity(0.8)
             })
             .frame(width: 300, height: 200)
-            
             Text(character.name ?? "-")
                 .font(.title3)
         }

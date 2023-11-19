@@ -19,6 +19,7 @@ final class RootViewModel: ObservableObject {
     @Published var status = RootState.splash
     
     // MARK: - Public functions
+    // Modifica el estado de la vista para que realice automáticamente la navegación de Splash a Home
     func changeState() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [ weak self]  in
             self?.status = .home

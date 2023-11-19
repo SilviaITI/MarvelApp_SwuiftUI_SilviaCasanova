@@ -17,24 +17,24 @@ struct CharactersView: View {
         LoadingView(isLoading: $viewModel.isLoading) {
             Group{
                 if viewModel.characters.isEmpty {
-                    EmptyMessage
+                    emptyMessage
                 } else {
-                    HeroesList
+                    heroesList
                 }
             }
-            .navigationTitle("Héroes")
+            .navigationTitle("home.navigation_title")
             .fullScreenCover(isPresented: $viewModel.showError, content: {
                 ErrorView(error: viewModel.errorText)
             })
     }
 }
     // MARK: - Components
-    var EmptyMessage: some View {
+    var emptyMessage: some View {
         Group {
             VStack{
-                Text("Estamos ocupados salvando el mundo, por favor intentelo más tarde")
+                Text("home.empty_message")
                     .padding()
-                Image("futuraPeleaMarvel5120X2880Xtrafondos1")
+                Image("pelea-marvel")
                     .resizable()
                     .frame(width: 300, height: 200)
                     .opacity(0.8)
@@ -42,7 +42,7 @@ struct CharactersView: View {
             }
         }
     }
-    var HeroesList: some View {
+    var heroesList: some View {
         Group {
             List {
                 ForEach(viewModel.characters) { data in
@@ -54,7 +54,7 @@ struct CharactersView: View {
                 }
             }
             .id(0)
-            .navigationTitle("Héroes")
+            .navigationTitle("home.navigation_title")
             .background(.gray)
         }
     }

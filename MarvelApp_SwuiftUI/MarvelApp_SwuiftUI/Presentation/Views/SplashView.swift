@@ -20,7 +20,7 @@ struct SplashView: View {
                 .id(0)
             VStack{
                 if !isWatchOS {
-                    Text("¡¡Bienvenido a Marvel!!")
+                    Text("splash.text")
                         .font(.title)
                         .bold()
                         .foregroundStyle(.black)

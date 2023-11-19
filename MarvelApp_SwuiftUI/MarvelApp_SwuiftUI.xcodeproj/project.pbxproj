@@ -24,6 +24,8 @@
 		617ADD682B0A7AE40021D866 /* extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617ADD662B0A7AE40021D866 /* extension+String.swift */; };
 		617ADD692B0A7E1D0021D866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61A81DD12B0138BF00353AD1 /* Assets.xcassets */; };
 		617ADD6A2B0A7F120021D866 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168E0E62B037FC300D3AC42 /* SplashView.swift */; };
+		617ADD6C2B0A84800021D866 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 617ADD6B2B0A84800021D866 /* Localizable.xcstrings */; };
+		617ADD6D2B0A84800021D866 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 617ADD6B2B0A84800021D866 /* Localizable.xcstrings */; };
 		61A1DB032B029B0E00C1F98A /* CharacterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1DB022B029B0E00C1F98A /* CharacterCellView.swift */; };
 		61A1DB082B02ADCB00C1F98A /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1DB072B02ADCB00C1F98A /* Series.swift */; };
 		61A81DC92B0138BD00353AD1 /* MarvelApp_SwuiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A81DC82B0138BD00353AD1 /* MarvelApp_SwuiftUIApp.swift */; };
@@ -130,6 +132,7 @@
 		6168E0EA2B0386D000D3AC42 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		616ADAFE2B08C2CD00DEC7D5 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		617ADD662B0A7AE40021D866 /* extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+String.swift"; sourceTree = "<group>"; };
+		617ADD6B2B0A84800021D866 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		61A1DB022B029B0E00C1F98A /* CharacterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellView.swift; sourceTree = "<group>"; };
 		61A1DB062B02A85600C1F98A /* MarvelApp-SwuiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MarvelApp-SwuiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		61A1DB072B02ADCB00C1F98A /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 				61A81DD32B0138BF00353AD1 /* MarvelApp_SwuiftUI.entitlements */,
 				61A81DCC2B0138BD00353AD1 /* MarvelApp_SwuiftUI.xcdatamodeld */,
 				61A81DD42B0138BF00353AD1 /* Preview Content */,
+				617ADD6B2B0A84800021D866 /* Localizable.xcstrings */,
 			);
 			path = MarvelApp_SwuiftUI;
 			sourceTree = "<group>";
@@ -325,9 +329,7 @@
 			children = (
 				61A81DF82B013A2E00353AD1 /* Data */,
 				61A81E002B013A8E00353AD1 /* Extensions */,
-				61A81DFF2B013A8100353AD1 /* UseCase */,
 				61A81DFE2B013A7900353AD1 /* Models */,
-				61A81DFD2B013A6F00353AD1 /* Protocols */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -363,13 +365,6 @@
 			path = ViewsModel;
 			sourceTree = "<group>";
 		};
-		61A81DFD2B013A6F00353AD1 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		61A81DFE2B013A7900353AD1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,13 +375,6 @@
 				613930FB2B0939E6008F3108 /* Results.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		61A81DFF2B013A8100353AD1 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UseCase;
 			sourceTree = "<group>";
 		};
 		61A81E002B013A8E00353AD1 /* Extensions */ = {
@@ -607,6 +595,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 61A81DBC2B0138BD00353AD1;
 			packageReferences = (
@@ -633,6 +622,7 @@
 			files = (
 				61A81DD62B0138BF00353AD1 /* Preview Assets.xcassets in Resources */,
 				61A81DD22B0138BF00353AD1 /* Assets.xcassets in Resources */,
+				617ADD6C2B0A84800021D866 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +646,7 @@
 			files = (
 				61C927A72B0A2742001CDF07 /* Preview Assets.xcassets in Resources */,
 				617ADD692B0A7E1D0021D866 /* Assets.xcassets in Resources */,
+				617ADD6D2B0A84800021D866 /* Localizable.xcstrings in Resources */,
 				61C927A42B0A2742001CDF07 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,7 @@ enum NetworkModel {
 
 extension NetworkModel {
     
+    
     var path: String {
         switch self {
         case .getHeroes:
@@ -39,8 +40,7 @@ extension NetworkModel {
             let item2 = URLQueryItem(name: "apikey", value: "c4f3f162d0e23b27093e8929b8af94b6")
             let item3 = URLQueryItem(name: "hash", value: "ec2facffc6252f40de0ae675c55244fb")
             return [item1, item2, item3]
-        default:
-            return nil
+            
         }
     }
     
@@ -82,7 +82,9 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+
 extension URLRequest {
+    // Método encargado de crear el request de la llamada al servicio
     static func request(networkRequest: NetworkModel) -> URLRequest {
         var bodyString = ""
         var comps = URLComponents(string: networkRequest.baseURL)

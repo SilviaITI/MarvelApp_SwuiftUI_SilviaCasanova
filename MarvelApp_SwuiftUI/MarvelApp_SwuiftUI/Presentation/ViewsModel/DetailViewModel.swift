@@ -35,6 +35,7 @@ final class DetailViewModel: ObservableObject {
     }
     
     // MARK: - Api functions
+    // Llamada al servicio que obtiene un result que contiene el listado de series filtrando según el id del personaje
     func getSeries(id: Int?) {
         guard let id else { return }
         self.status = .loading
@@ -66,6 +67,7 @@ final class DetailViewModel: ObservableObject {
     }
     
     // MARK: - Public functions
+    // Modifica los estados de la vista para manejar errores, vista de carga y si la vista está cargada
     func handleViewStates() {
         switch status {
         case .loaded:
@@ -81,12 +83,14 @@ final class DetailViewModel: ObservableObject {
         }
     }
     
+    // Función de carga de series para testing
     func getSeriesTesting() {
         self.status = .loading
         self.series = getSeriesDesign()
         self.status = .loaded
     }
     
+    // Series ficticias creados para testing
     func getSeriesDesign() -> [Serie] {
         let serie1 = Serie(id: 123, title: "Los Cuatro Fantásticos", description: "Esta es una descripción de prueba.", thumbnail: SerieImage.init(path: "camera", pathExtension: ".fill"))
         let serie2 = Serie(id: 123, title: "SpiderMan", description: "esta es una descripción de prueba", thumbnail:  SerieImage.init(path: "camera", pathExtension: ".fill"))

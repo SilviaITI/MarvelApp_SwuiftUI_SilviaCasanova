@@ -33,6 +33,7 @@ final class CharactersViewModel: ObservableObject {
     }
     
     // MARK: - Api functions
+    // Llamada al servicio que obtiene un result que contiene el listado de personajes
     func getCharacters() {
         status = .loading
         URLSession.shared
@@ -51,7 +52,7 @@ final class CharactersViewModel: ObservableObject {
             .sink { [weak self]  completion in
                 switch completion {
                 case .failure:
-                    self?.status = .error(error: "Error buscando personajes")
+                    self?.status = .error(error: "error.text")
                 case .finished:
                     self?.status = .loaded
                 }
@@ -63,27 +64,31 @@ final class CharactersViewModel: ObservableObject {
     }
     
     // MARK: - Public functions
+    // Modifica los estados de la vista para manejar errores, vista de carga y si la vista está cargada
     func handleViewStates() {
-        switch status {
-        case .loaded:
-            isLoading = false
-        case .loading:
-            isLoading = true
-        case .error(let error):
-            isLoading = false
-            showError = true
-            errorText = error
-        default: ()
-            
+        DispatchQueue.main.async { [weak self] in
+            switch self?.status {
+            case .loaded:
+                self?.isLoading = false
+            case .loading:
+                self?.isLoading = true
+            case .error(let error):
+                self?.isLoading = false
+                self?.showError = true
+                self?.errorText = error
+            default: ()
+            }
         }
     }
     
+    // Función de carga de personajes para testing
     func getCharactersTesting() {
         self.status = .loading
         self.characters = getCharactersDesign()
         self.status = .loaded
     }
     
+    // Personajes ficticios creados para testing
     func getCharactersDesign() -> [Heroes] {
         let character1 = Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")
         let character2 = Heroes(id: 124, name: "Spiderman", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "")

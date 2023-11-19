@@ -60,7 +60,7 @@ struct DetailView: View {
                 .padding()
                 .background(Color.white.opacity(0.3))
                 .id(1)
-            Text("Series en las que aparece")
+            Text("detail.title")
                 .bold()
                 .font(.title)
             ScrollView {
@@ -91,7 +91,7 @@ struct DetailView: View {
     }
     var seriesSectionWOS: some View {
         VStack{
-            Text("Series en las que aparece")
+            Text("detail.title")
             ScrollView {
                 LazyVStack(alignment: .leading){
                     ForEach(viewModel.series) { data in

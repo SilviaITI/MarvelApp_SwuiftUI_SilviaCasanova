@@ -18,19 +18,59 @@ final class TestCharacterViewModel: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testGetCharacters() throws {
+        let expectation = self.expectation(description: "Descarga héroes")
+        var subscribers = Set<AnyCancellable>()
+        
+        let viewModel = CharactersViewModel(testing: true)
+        XCTAssertNotNil(viewModel)
+        
+        viewModel.characters.publisher
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    XCTAssertEqual(1, 1)
+                    expectation.fulfill()
+                case .failure:
+                    XCTAssertEqual(1, 2)
+                    expectation.fulfill()
+                }
+            } receiveValue: { data in
+                XCTAssertEqual(1, 1)
+            }
+            .store(in: &subscribers)
+        viewModel.getCharactersTesting()
+        self.waitForExpectations(timeout: 8)
     }
+    func testHandleViewStatesLoaded() {
+           var viewModel = CharactersViewModel(testing: true)
+        viewModel.status = .loaded
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        viewModel.handleViewStates()
+
+           XCTAssertFalse(viewModel.isLoading, "Cuando el estado es 'loaded', isLoading debe ser falso.")
+       }
+
+       func testHandleViewStatesLoading() {
+           var viewModel = CharactersViewModel(testing: true)
+           viewModel.status = .loading
+
+           viewModel.handleViewStates()
+
+           XCTAssertTrue(viewModel.isLoading, "Cuando el estado es 'loading', isLoading debe ser verdadero.")
+       }
+
+       func testHandleViewStatesError() {
+           var viewModel = CharactersViewModel(testing: true)
+           let errorMessage = "Error de prueba"
+           viewModel.status = .error(error: errorMessage)
+
+           viewModel.handleViewStates()
+
+           XCTAssertFalse(viewModel.isLoading, "Cuando el estado es 'error', isLoading debe ser falso.")
+           XCTAssertTrue(viewModel.showError, "Cuando el estado es 'error', showError debe ser verdadero.")
+           XCTAssertEqual(viewModel.errorText, errorMessage, "El mensaje de error debe coincidir con el proporcionado.")
+       }
+
 
 }

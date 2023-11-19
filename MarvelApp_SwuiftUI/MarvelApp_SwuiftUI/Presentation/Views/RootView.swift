@@ -8,7 +8,7 @@
 import SwiftUI
 struct RootView: View {
     @StateObject var rootViewModel = RootViewModel()
-     
+    
     var body: some View {
         NavigationStack {
             ZStack  {
@@ -17,6 +17,8 @@ struct RootView: View {
                     SplashView()
                 case .home:
                     CharactersView()
+                case .error:
+                    ErrorView(error: rootViewModel.errorString)
                     
                 }
             }

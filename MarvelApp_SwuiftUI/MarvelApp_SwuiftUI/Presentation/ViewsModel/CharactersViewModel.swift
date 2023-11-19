@@ -11,7 +11,7 @@ import Combine
 final class CharactersViewModel: ObservableObject {
     
     
-    @Published var status = Status.none {
+     var status = Status.none {
         didSet{
             handleViewStates()
         }
@@ -34,7 +34,7 @@ final class CharactersViewModel: ObservableObject {
     func getCharacters() {
         status = .loading
         URLSession.shared
-            .dataTaskPublisher(for: NetWorkModel().getApiCharacters())
+            .dataTaskPublisher(for: .request(networkRequest: .getHeroes))
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
                     

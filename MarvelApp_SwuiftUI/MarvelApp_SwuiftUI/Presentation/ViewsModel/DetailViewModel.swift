@@ -11,7 +11,7 @@ import Combine
 final class DetailViewModel: ObservableObject {
  
     
-    @Published var status = Status.none {
+    var status = Status.none {
         didSet{
             handleViewStates()
         }
@@ -36,7 +36,7 @@ final class DetailViewModel: ObservableObject {
     func getSeries(id: Int?) {
         guard let id else { return }
         self.status = .loading
-        URLSession.shared.dataTaskPublisher(for: NetWorkModel().getSeries(with: id))
+        URLSession.shared.dataTaskPublisher(for: .request(networkRequest: .getSeries(id: id)))
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
                       response.statusCode == 200 else {

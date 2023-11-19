@@ -57,6 +57,7 @@ struct DetailView: View {
                                     }
                                     .padding(.leading, 12)
                             }
+                          
                         }
                         .padding()
                     }
@@ -66,6 +67,9 @@ struct DetailView: View {
             .navigationTitle(viewModel.character.name ?? "_")
             .navigationBarTitleDisplayMode(.inline)
             .edgesIgnoringSafeArea(.bottom)
+            .fullScreenCover(isPresented: $viewModel.showError, content: {
+                ErrorView(error: viewModel.errorText)
+            })
     }
                             }
 }

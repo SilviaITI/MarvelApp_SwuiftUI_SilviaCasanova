@@ -9,21 +9,22 @@ import Foundation
 import Combine
 
 final class DetailViewModel: ObservableObject {
- 
     
-    var status = Status.none {
-        didSet{
-            handleViewStates()
-        }
-    }
+    //MARK: - Properties
     @Published var isLoading = false
     @Published var showError = false
     @Published var series:[Serie] = []
     @Published var character: Heroes
     @Published var errorText = ""
     
+    var status = Status.none {
+        didSet{
+            handleViewStates()
+        }
+    }
     var subscribers = Set<AnyCancellable>()
     
+    // MARK: - Inizializers
     init(testing: Bool = false, character: Heroes) {
         self.character = character
         if (testing) {
@@ -33,6 +34,7 @@ final class DetailViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Api functions
     func getSeries(id: Int?) {
         guard let id else { return }
         self.status = .loading
@@ -49,19 +51,21 @@ final class DetailViewModel: ObservableObject {
             }
             .decode(type: DataResponse<Serie>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .failure:
-                    self.status = .error(error: "Error al recibir los datos del héroe")
+                    self?.status = .error(error: "Error al recibir los datos del héroe")
                 case .finished:
-                    self.status = .loaded
+                    self?.status = .loaded
                 }
             } receiveValue: { [weak self] (response: DataResponse<Serie>) in
                 self?.series = response.data.results
                 
             }
             .store(in: &subscribers)
-            }
+    }
+    
+    // MARK: - Public functions
     func handleViewStates() {
         switch status {
         case .loaded:
@@ -76,11 +80,13 @@ final class DetailViewModel: ObservableObject {
             
         }
     }
+    
     func getSeriesTesting() {
         self.status = .loading
         self.series = getSeriesDesign()
         self.status = .loaded
     }
+    
     func getSeriesDesign() -> [Serie] {
         let serie1 = Serie(id: 123, title: "Los Cuatro Fantásticos", description: "Esta es una descripción de prueba.", thumbnail: SerieImage.init(path: "camera", pathExtension: ".fill"))
         let serie2 = Serie(id: 123, title: "SpiderMan", description: "esta es una descripción de prueba", thumbnail:  SerieImage.init(path: "camera", pathExtension: ".fill"))

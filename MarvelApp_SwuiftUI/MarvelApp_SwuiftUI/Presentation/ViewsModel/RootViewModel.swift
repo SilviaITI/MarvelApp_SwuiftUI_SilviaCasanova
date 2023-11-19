@@ -6,17 +6,19 @@
 //
 
 import Foundation
-import Combine
 
+//MARK: - Enum States
 enum RootState {
     case home
     case splash
-    case error
 }
+
+// MARK: - Class
 final class RootViewModel: ObservableObject {
+    // MARK: - Properties
     @Published var status = RootState.splash
-    @Published var errorString: String = ""
     
+    // MARK: - Public functions
     func changeState() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [ weak self]  in
             self?.status = .home

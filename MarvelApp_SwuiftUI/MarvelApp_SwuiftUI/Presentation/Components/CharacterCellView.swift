@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct CharacterCellView: View {
+    // MARK: - Properties
     let character: Heroes
+    
+    // MARK: - Principal View
     var body: some View {
         VStack {
-            
 #if os(watchOS)
-  heroImageWOS
-            #else
-        heroImageiOS
-             
-            #endif
+            heroImageWOS
+#else
+            heroImageiOS
+#endif
         }
         .padding()
     }
-    
+   // MARK: - Componentes
     var heroImageWOS: some View {
         Group {
             // Código específico para watchOS
@@ -41,7 +42,7 @@ struct CharacterCellView: View {
                     .opacity(0.8)
             })
             .frame(maxWidth: .infinity, alignment: .center)
-                           .padding(.vertical, 10)
+            .padding(.vertical, 10)
             Text(character.name ?? "-")
                 .font(.caption)
         }
@@ -67,10 +68,7 @@ struct CharacterCellView: View {
         }
     }
 }
-    
-       
-        
-
+ // MARK: - Preview
 #Preview {
     CharacterCellView(character: Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción"))
 }

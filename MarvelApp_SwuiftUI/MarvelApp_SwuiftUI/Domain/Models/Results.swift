@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 public struct Results<T: Codable>: Codable {
     let results: [T]
 }

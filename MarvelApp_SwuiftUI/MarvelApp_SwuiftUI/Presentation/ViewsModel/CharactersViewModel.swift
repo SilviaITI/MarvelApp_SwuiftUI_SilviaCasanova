@@ -10,19 +10,20 @@ import Combine
 
 final class CharactersViewModel: ObservableObject {
     
+    //MARK: - Properties
+    @Published var isLoading = false
+    @Published var showError = false
+    @Published var characters: [Heroes] = []
+    @Published var errorText = ""
     
-     var status = Status.none {
+    var status = Status.none {
         didSet{
             handleViewStates()
         }
     }
-    @Published var isLoading = false
-    @Published var showError = false
-    @Published var characters:[Heroes] = []
-    @Published var errorText = ""
-    
     var subscribers = Set<AnyCancellable>()
     
+    // MARK: - Inizializers
     init(testing: Bool = false) {
         if (testing) {
             getCharactersTesting()
@@ -31,17 +32,16 @@ final class CharactersViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Api functions
     func getCharacters() {
         status = .loading
         URLSession.shared
             .dataTaskPublisher(for: .request(networkRequest: .getHeroes))
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse,
-                    
                       response.statusCode == 200 else {
                     self.status = .error(error: "Error al construir url")
                     throw URLError(.badServerResponse)
-                    
                 }
                 print("received response\($0.data.base64EncodedString())")
                 return $0.data
@@ -61,6 +61,8 @@ final class CharactersViewModel: ObservableObject {
             }
             .store(in: &subscribers)
     }
+    
+    // MARK: - Public functions
     func handleViewStates() {
         switch status {
         case .loaded:

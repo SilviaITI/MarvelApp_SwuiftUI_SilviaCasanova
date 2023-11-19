@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
  public struct Heroes: Codable, Identifiable {
     
      public let id: Int?
@@ -16,9 +14,9 @@ import Foundation
      public let thumbnail: HeroImage?
      public let description: String?
      public var completeImage: String {
-        "\(thumbnail?.path ?? "").\(thumbnail?.pathExtension ?? "")".replacingOccurrences(of: "http", with: "https")
-       
+        "\(thumbnail?.path ?? "").\(thumbnail?.pathExtension ?? "")".securePath
     }
+
      init(id: Int?, name: String?, thumbnail: HeroImage?, description: String?) {
          self.id = id
          self.name = name

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ErrorView: View {
+    // MARK: - Properties
     @Environment (\.dismiss) var dismiss
     let error: String
     
+    //MARK: - Principal View
     var body: some View {
-       
             VStack{
                 Button(action: {
                     dismiss()
@@ -25,21 +26,24 @@ struct ErrorView: View {
                 .id(0)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding()
+                
                 Spacer()
+                
                 Text(error)
                     .id(1)
+                
                 Image(systemName: "exclamationmark.triangle")
                     .resizable()
                     .frame(width: 150, height: 150)
                     .foregroundColor(.yellow)
                     .id(1)
+                
                 Spacer()
             }
         }
-        
     }
 
-
+// MARK: - Preview
 #Preview {
     ErrorView(error: "Error de prueba")
 }

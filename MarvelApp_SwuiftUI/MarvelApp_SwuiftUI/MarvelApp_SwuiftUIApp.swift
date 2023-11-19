@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct MarvelApp_SwuiftUIApp: App {
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             RootView()

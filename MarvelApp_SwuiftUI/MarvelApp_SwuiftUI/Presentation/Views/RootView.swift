@@ -6,9 +6,22 @@
 //
 
 import SwiftUI
+
+
+ var isWatchOS: Bool {
+#if os(watchOS)
+    return true
+#else
+    return false
+#endif
+}
+
 struct RootView: View {
-    @StateObject var rootViewModel = RootViewModel()
     
+    // MARK: - Properties
+    @StateObject var rootViewModel = RootViewModel()
+
+    // MARK: - Principal View
     var body: some View {
         NavigationStack {
             ZStack  {
@@ -17,19 +30,14 @@ struct RootView: View {
                     SplashView()
                 case .home:
                     CharactersView()
-                case .error:
-                    ErrorView(error: rootViewModel.errorString)
-                    
                 }
             }
             .onAppear(perform: rootViewModel.changeState)
         }
-
-        }
     }
-    
+}
 
-
+// MARK: - Preview
 #Preview {
     RootView()
 }

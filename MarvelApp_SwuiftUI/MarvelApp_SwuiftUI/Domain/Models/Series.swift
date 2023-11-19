@@ -9,14 +9,13 @@ import Foundation
 
 
 struct Serie: Codable, Identifiable {
-    
-   
+
     let id: Int?
     let title: String?
     let description: String?
     let thumbnail: SerieImage?
     var completeImage: String {
-        "\(thumbnail?.path ?? "").\(thumbnail?.pathExtension ?? "")".replacingOccurrences(of: "http", with: "https")
+        "\(thumbnail?.path ?? "").\(thumbnail?.pathExtension ?? "")".securePath
     }
 }
 struct SerieImage: Codable {

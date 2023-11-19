@@ -52,7 +52,7 @@ final class CharactersViewModel: ObservableObject {
             .sink { [weak self]  completion in
                 switch completion {
                 case .failure:
-                    self?.status = .error(error: "error.text")
+                    self?.status = .error(error: "Error al cargar los héroes")
                 case .finished:
                     self?.status = .loaded
                 }

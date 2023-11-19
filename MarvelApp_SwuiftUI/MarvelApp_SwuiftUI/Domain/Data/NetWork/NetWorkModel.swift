@@ -19,7 +19,7 @@ extension NetworkModel {
     var path: String {
         switch self {
         case .getHeroes:
-            return "/v1/public/characters"
+            return "/v1/public/character"
         case .getSeries(let id):
             return "/v1/public/characters/\(id)/series"
         }

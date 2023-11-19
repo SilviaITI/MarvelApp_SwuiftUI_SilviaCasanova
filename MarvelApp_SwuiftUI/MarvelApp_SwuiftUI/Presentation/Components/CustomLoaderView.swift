@@ -15,7 +15,7 @@ struct CustomLoaderView: View {
     
     var body: some View {
         
-        Image(.escudoCapitanAmérica)
+        Image("escudoCapitanAmérica")
             .rotationEffect(.degrees(animate ? 360 : 0))
             .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: animate)
         

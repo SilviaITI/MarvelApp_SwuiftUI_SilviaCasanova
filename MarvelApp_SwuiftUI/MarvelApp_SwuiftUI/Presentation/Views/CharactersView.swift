@@ -18,7 +18,7 @@ struct CharactersView: View {
                     VStack{
                         Text("Estamos ocupados salvando el mundo, por favor intentelo más tarde")
                             .padding()
-                        Image(.futuraPeleaMarvel5120X2880Xtrafondos1)
+                        Image("futuraPeleaMarvel5120X2880Xtrafondos1")
                             .resizable()
                             .frame(width: 300, height: 200)
                             .opacity(0.8)
@@ -43,11 +43,13 @@ struct CharactersView: View {
                 }
             }
             .navigationTitle("Héroes")
+    
             .fullScreenCover(isPresented: $viewModel.showError, content: {
                 ErrorView(error: viewModel.errorText)
             })
-        }
+    
     }
+}
 }
 #Preview {
    

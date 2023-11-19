@@ -11,7 +11,7 @@ struct SplashView: View {
     var body: some View {
     
         ZStack {
-            Image(.marvelUniverse4)
+            Image("marvelUniverse4")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -23,7 +23,7 @@ struct SplashView: View {
                     .bold()
                     .foregroundStyle(.black)
                     .id(1)
-                Image(.escudoCapitanAmérica)
+                Image("escudoCapitanAmérica")
                     .id(2)
                 }
                 

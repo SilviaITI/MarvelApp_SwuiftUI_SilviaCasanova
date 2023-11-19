@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import Combine
+@testable import MarvelApp_SwuiftUI
 
 final class TestDetailViewModel: XCTestCase {
 
@@ -17,19 +19,62 @@ final class TestDetailViewModel: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testGetCharacters() throws {
+        let characterTest = Heroes( id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción")
+        let expectation = self.expectation(description: "Descarga héroes")
+        var subscribers = Set<AnyCancellable>()
+        
+        let viewModel = DetailViewModel(testing: true, character: characterTest)
+        XCTAssertNotNil(viewModel)
+        
+        viewModel.series.publisher
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    XCTAssertEqual(1, 1)
+                    expectation.fulfill()
+                case .failure:
+                    XCTAssertEqual(1, 2)
+                    expectation.fulfill()
+                }
+            } receiveValue: { data in
+                XCTAssertEqual(1, 1)
+            }
+            .store(in: &subscribers)
+        viewModel.getSeriesTesting()
+        self.waitForExpectations(timeout: 8)
     }
+    func testHandleViewStatesLoaded() {
+        let characterTest = Heroes( id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción")
+        let viewModel = DetailViewModel(testing: true, character: characterTest)
+        viewModel.status = .loaded
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        viewModel.handleViewStates()
+
+           XCTAssertFalse(viewModel.isLoading, "Cuando el estado es 'loaded', isLoading debe ser falso.")
+       }
+
+       func testHandleViewStatesLoading() {
+           let characterTest = Heroes( id: 123, name: "Capitan America", thumbnail: HeroImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087", pathExtension: ".jpg"), description: "esto es una descripción")
+           let viewModel = DetailViewModel(testing: true, character: characterTest)
+           viewModel.status = .loading
+
+           viewModel.handleViewStates()
+
+           XCTAssertTrue(viewModel.isLoading, "Cuando el estado es 'loading', isLoading debe ser verdadero.")
+       }
+
+       func testHandleViewStatesError() {
+         
+           let viewModel = CharactersViewModel(testing: true)
+           let errorMessage = "Error de prueba"
+           viewModel.status = .error(error: errorMessage)
+
+           viewModel.handleViewStates()
+
+           XCTAssertFalse(viewModel.isLoading, "Cuando el estado es 'error', isLoading debe ser falso.")
+           XCTAssertTrue(viewModel.showError, "Cuando el estado es 'error', showError debe ser verdadero.")
+           XCTAssertEqual(viewModel.errorText, errorMessage, "El mensaje de error debe coincidir con el proporcionado.")
+       }
 
 }

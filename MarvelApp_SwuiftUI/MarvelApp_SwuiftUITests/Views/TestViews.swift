@@ -28,7 +28,7 @@ final class TestViews: XCTestCase {
         XCTAssertEqual(numItems, 1)
     }
     func testCharactersView() throws {
-        let viewModel = CharactersViewModel()
+       
         let view = CharactersView()
         XCTAssertNotNil(view)
         
@@ -61,12 +61,7 @@ final class TestViews: XCTestCase {
         let numItems = try view.inspect().count
         XCTAssertEqual(numItems,1)
         
-//        let image1 = try view.inspect().find(viewWithId: 0)
-//        XCTAssertNotNil(image1)
-//        let image2 = try view.inspect().find(viewWithId: 1)
-//        XCTAssertNotNil(image2)
-//        let text = try view.inspect().find(viewWithId: 2)
-//        XCTAssertNotNil(text)
     }
+    
 
 }

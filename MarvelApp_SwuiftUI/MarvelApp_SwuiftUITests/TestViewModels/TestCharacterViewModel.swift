@@ -43,7 +43,7 @@ final class TestCharacterViewModel: XCTestCase {
         self.waitForExpectations(timeout: 8)
     }
     func testHandleViewStatesLoaded() {
-           var viewModel = CharactersViewModel(testing: true)
+           let viewModel = CharactersViewModel(testing: true)
         viewModel.status = .loaded
 
         viewModel.handleViewStates()
@@ -52,7 +52,7 @@ final class TestCharacterViewModel: XCTestCase {
        }
 
        func testHandleViewStatesLoading() {
-           var viewModel = CharactersViewModel(testing: true)
+           let viewModel = CharactersViewModel(testing: true)
            viewModel.status = .loading
 
            viewModel.handleViewStates()
@@ -61,7 +61,7 @@ final class TestCharacterViewModel: XCTestCase {
        }
 
        func testHandleViewStatesError() {
-           var viewModel = CharactersViewModel(testing: true)
+           let viewModel = CharactersViewModel(testing: true)
            let errorMessage = "Error de prueba"
            viewModel.status = .error(error: errorMessage)
 

@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+ var isWatchOS: Bool {
+#if os(watchOS)
+    return true
+#else
+    return false
+#endif
+}
+
 struct DetailView: View {
     @StateObject var viewModel: DetailViewModel
     var body: some View {
@@ -25,54 +33,95 @@ struct DetailView: View {
                         .opacity(0.2)
                 })
                 .id(0)
+#if os(watchOS)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+#else
                 .frame(minWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
-                VStack{
-                    Text(viewModel.character.description ?? "")
-                        .padding()
-                        .background(Color.white.opacity(0.3))
-                        .id(1)
-                        
-                 
-                    ScrollView {
-                        LazyVStack(alignment: .leading){
-                            ForEach(viewModel.series) { data in
-                                    HStack {
-                                        AsyncImage(url: URL(string: data.completeImage), content: { image in
-                                            image
-                                                .resizable()
-                                                .cornerRadius(20)
-                                        }, placeholder: {
-                                            Image(systemName: "photo")
-                                                .resizable()
-                                                
-                                        })
-                                        .id(1)
-                                        .frame(width: 200, height: 200)
-                                        Text(data.title ?? "-")
-                                            .bold()
-                                            .id(2)
-                                        
-                                        
-                                        //                                Text(data.description ?? "Esto es una descripción")
-                                    }
-                                    .padding(.leading, 12)
-                            }
-                          
-                        }
-                        .padding()
-                    }
+#endif
+                if isWatchOS {
+                    seriesSectionWOS
+                } else {
+                    seriesSectioniOS
                 }
-                .padding()
-        }
+            }
+            
             .navigationTitle(viewModel.character.name ?? "_")
             .navigationBarTitleDisplayMode(.inline)
             .edgesIgnoringSafeArea(.bottom)
-            .fullScreenCover(isPresented: $viewModel.showError, content: {
-                ErrorView(error: viewModel.errorText)
-            })
+            
+            
+        }
     }
-                            }
+    var seriesSectioniOS: some View {
+        
+        VStack{
+            
+            Text(viewModel.character.description ?? "")
+                .padding()
+                .background(Color.white.opacity(0.3))
+                .id(1)
+            ScrollView {
+                LazyVStack(alignment: .leading){
+                    ForEach(viewModel.series) { data in
+                        HStack {
+                            AsyncImage(url: URL(string: data.completeImage), content: { image in
+                                image
+                                    .resizable()
+                                    .cornerRadius(20)
+                            }, placeholder: {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                
+                            })
+                            .id(1)
+                            .frame(width: 200, height: 200)
+                            Text(data.title ?? "-")
+                                .bold()
+                                .id(2)
+                            
+                        }
+                        .padding(.leading, 12)
+                        
+                    }
+                    
+                }
+                .padding()
+            }
+        }
+        .padding()
+    }
+    var seriesSectionWOS: some View {
+        VStack{
+            ScrollView {
+                LazyVStack(alignment: .leading){
+                    ForEach(viewModel.series) { data in
+                        HStack {
+                            AsyncImage(url: URL(string: data.completeImage), content: { image in
+                                image
+                                    .resizable()
+                                    .cornerRadius(20)
+                            }, placeholder: {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                
+                            })
+                            .id(1)
+                            .frame(width: 150, height: 150)
+                            
+                        }
+                        
+                        .padding(.leading, 0)
+                        
+                    }
+                    
+                }
+                .padding()
+            }
+        }
+        .padding()
+    }
 }
+
 #Preview {
     DetailView(viewModel: DetailViewModel(character: Heroes(id: 123, name: "Capitan America", thumbnail: HeroImage.init(path: "camera", pathExtension: ".fill"), description: "Esta es una descripción generica del personaje que se muestra en el detalle")))
 }
